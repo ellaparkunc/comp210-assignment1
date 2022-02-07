@@ -9,8 +9,11 @@ package a1;
 */
 
 public class Summer {
+   // instance variables
    private int[] nums;
    // Any other data fields you decide you need can go here.
+   //how many in my array?
+   private int n;
 
    public Summer(int n) {
       /* In this constructor, first allocate an array that hold n ints and put that in nums.
@@ -18,19 +21,37 @@ public class Summer {
       you would need to do something with that field here.
       */
       /*Your code here */
+      this.n = 0;
+      this.nums = new int[n];
    }
 
+
    public void add( int num ) {
-     // In this method, take the parameter num and put that value into the Summer.
+     // In this method, take the parameter num and put that value into the Summer array.
       /*Your code here */
+      //add element to end of array and put new array into summer
+      nums[n] = num;
+      n++;
+      //print(nums);
    }
-   
-   public int sum ( ) { 
+
+   //public void print(int[] toPrint) {
+      //for (int item : toPrint) {
+         //System.out.println(item);
+      //}
+   //}
+
+   public int sum ( ) {
      /* In this method, go through the array and add up all the ints
       that have been stored in it so far.
       Note that the sum of ints is of type int, so return the int sum you get.  */
 
       /*Your code here*/
+      int total = 0;
+      for (int item : nums) {
+         total += item;
+      }
+      return total;
    }
    
    public int high ( ) { 
@@ -38,6 +59,13 @@ public class Summer {
       and return it. */
 
       /*Your code here */
+      int biggest = nums[0];
+      for (int i = 0; i < n; i++) {
+         if (nums[i] > biggest) {
+            biggest = nums[i];
+         }
+      }
+      return biggest;
    }
    
    public int low ( ) { 
@@ -45,6 +73,13 @@ public class Summer {
       and return it. */
 
       /*Your code here */
+      int smallest = nums[0];
+      for (int i = 0; i < n; i++) {
+         if (nums[i] < smallest) {
+            smallest = nums[i];
+         }
+      }
+      return smallest;
    }
    
    public double average( ) {
@@ -62,7 +97,12 @@ public class Summer {
        */
 
       /*Your code here */
+      if (count() == 0) {
+         return(0.0);
+      }
 
+      double Summation = (sum());
+      return (Summation / (double)n);
    }
    
    public double avgOver( int thresh ) {
@@ -81,12 +121,27 @@ public class Summer {
    */
 
       /*Your code here */
+
+
+      //Summing all selected numbers
+      double total = 0.0;
+      double count = 0.0;
+      for(int item: nums) {
+         if (item > thresh) {
+            total += item;
+            count ++;
+         }
+      }
+      if (count == 0.0) {
+         return 0.0;
+      }
+      return (total / count);
    }
    
    public int count ( ) {  
      //Return the number of ints that have been stored in the array.
        
      /*Your code here */
-
+      return n;
    }
 }
